@@ -1,4 +1,6 @@
 <<<<<<< HEAD
+# local-taste
+=======
 # SW_Capstone
 ## LOCAL TASTE - 현지인 기반 음식점 추천서비스
 
@@ -31,6 +33,4 @@
 
 
 시연 동영상 : https://www.youtube.com/watch?v=oXljLrR6cCA
-=======
-# local-taste
->>>>>>> 87cf363 (Initial commit)
+>>>>>>> f02f674 (12.05)
