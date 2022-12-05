@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+{% load pybo_filter %}
+{% block content %}
+
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>Album example · Bootstrap v5.2</title>
+
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/album/">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#712cf9">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      $(this).popover({
+            html:true
+        });
+    </style>
+
+
+  </head>
+  <body>
+
+<main>
+
+  <section class="text-center container py-2">
+    <div class="row py-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+          {% for eng, kor in city_eng_kor.items %}
+          {% if city == eng %}
+        <h1 class="fw-light">{{kor}} 현지인 맛집</h1>
+          {% endif %}
+          {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="text-center container py-2">
+    {% if kw == '' %}
+    <div class="row py-lg-2">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h3 class="fw-light">음식 종류 선택</h3>
+
+
+          <form action="{% url 'result' city %}" method="get">
+              <div class="py-2">
+                <div class="btn-group" role="group" aria-label="Default button group">
+
+                    {% for eng, kor in type_eng_kor.items %}
+                    <input type="checkbox" class="btn-check" id="{{eng}}" name="f" value="{{eng}}">
+                    <label class="btn btn-outline-primary" for="{{eng}}">{{kor}}
+
+                    </label>
+                    {% endfor %}
+                </div>
+              <button class="btn btn-primary" type="submit">선택</button>
+                  <p>(아무것도 선택하지 않으면 전체 음식점이 추천됩니다.)</p>
+
+              </div>
+          </form>
+      </div>
+    </div>
+    {% endif %}
+
+            {% if kw == '' %}
+            {% for i in f %}
+            {% for eng, kor in type_eng_kor.items %}
+            {% if eng == i %}
+            {% if i == 'korean' %}
+            <button type="button" class="btn btn-primary">{{kor}}</button>
+            {% elif i == 'japanese' %}
+            <button type="button" class="btn btn-danger">{{kor}}</button>
+            {% elif i == 'chinese' or i == 'snack' %}
+            <button type="button" class="btn btn-warning">{{kor}}</button>
+            {% elif i == 'western' %}
+            <button type="button" class="btn btn-info">{{kor}}</button>
+            {% elif i == 'cafe' %}
+            <button type="button" class="btn btn-success">{{kor}}</button>
+            {% else %}
+            <button type="button" class="btn btn-secondary">{{kor}}</button>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+            {% endif %}
+    </section>
+
+    <section class="text-center container py-2">
+          <div class="theme-cards__heading">
+                {% if kw == '' %}
+            <h3 class="theme-cards__title py-2">추천 결과</h3>
+            <button type="button"
+                    class="theme-cards heading__button btn btn-dark" data-bs-toggle="popover"
+                    data-bs-content="현지인 평점이 높은 순서<br><br>
+                    제약 조건<br>
+                    - 전체 리뷰 수 20개 이상<br>
+                    - 현지인 리뷰 수 5개 이상<br>
+                    - 전체 평점 3.0 이상"  data-bs-html="true">추천 알고리즘 보기
+            </button>
+            {% else %}
+            <h3 class="fw-light py-2">{{kw}} 검색 결과</h3>
+              {% endif %}
+              </div>
+    </section>
+
+    <section class="text-center container py-2">
+    <div class="album py-3 md-3 lg-4">
+        <div class="col col-rows-1 col-rows-md-3 col-rows-lg-4 py-2">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 rows-cols-lg-4 py-2">
+
+                {% for restaurant in restaurants %}
+                <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img class="bd-placeholder-img card-img-top" width="100%" height="225" src={{restaurant.image_link}} role="img">
+
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-text">{{ restaurants.start_index|add:forloop.counter0 }}. {{restaurant.restaurant_name}}</h5>
+                            {% for eng, kor in type_eng_kor.items %}
+                            {% if eng == restaurant.type %}
+                            <p class="text-muted">{{kor}}</p>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="card-text">현지인 평점<br>⭐ {{restaurant.local_rating}} ({{restaurant.local_count}})</p>
+                            <p class="card-text">전체 평점<br>⭐ {{restaurant.total_rating}} ({{restaurant.review_count}})</p>
+                        </div>
+                        <div class="text-center container">
+                            <a href="/{{city}}/detail_{{restaurant.restaurant_num}}" class="btn btn-primary stretched-link">상세정보 보기</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+  </div>
+    </section>
+</main>
+
+<!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        {% if restaurants.has_previous %}
+        <li class="page-item">
+            <a class="page-link" data-page="{{ restaurants.previous_page_number }}" href="javascript:void(0)">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+        {% endif %}
+        <!-- 페이지리스트 -->
+        {% for page_number in restaurants.paginator.page_range %}
+        {% if page_number >= restaurants.number|add:-10 and page_number <= restaurants.number|add:10 %}
+        {% if page_number == restaurants.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" data-page="{{ page_number }}" href="javascript:void(0)">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" data-page="{{ page_number }}" href="javascript:void(0)">{{ page_number }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <!-- 다음페이지 -->
+        {% if restaurants.has_next %}
+        <li class="page-item">
+            <a class="page-link" data-page="{{ restaurants.next_page_number }}" href="javascript:void(0)">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+        {% endif %}
+    </ul>
+    <!-- 페이징처리 끝 -->
+
+<form id="searchForm" method="get" action="{% url 'result' city %}">
+    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+    {% for i in f %}
+    <input type="hidden" id="f" name="f" value="{{ i }}">
+    {% endfor %}
+    <input type="hidden" id="page" name="page" value="{{ page }}">
+</form>
+    <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+</body>
+</html>
+{% endblock %}
+
+{% block script %}
+<script type='text/javascript'>
+const page_elements = document.getElementsByClassName("page-link");
+Array.from(page_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        document.getElementById('page').value = this.dataset.page;
+        document.getElementById('searchForm').submit();
+    });
+});
+const btn_search = document.getElementById("btn_search");
+btn_search.addEventListener('click', function() {
+    document.getElementById('kw').value = document.getElementById('search_kw').value;
+    document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+    document.getElementById('searchForm').submit();
+});
+
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>
+{% endblock %}

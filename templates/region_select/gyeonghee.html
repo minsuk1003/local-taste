@@ -1,0 +1,45 @@
+{% extends 'base_without_navbar.html' %}
+{% block content %}
+  <main>
+  <div class="container">
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="https://ifh.cc/g/vFNQqq.png" alt="" height="150">
+      <h2>현지인 기반 음식점 추천서비스 'LOCAL TASTE'</h2>
+      <p class="lead">현지인 맛집을 찾으시나요? 현지 입맛에 맞는 맛집을 찾으시나요?<br>그렇다면 LOCAL TASTE를 통해 각 지역의 현지인들이 높게 평가한 맛집을 추천받으세요!</p>
+    </div>
+  <div class="container text-center px-2 py-3" id="featured-3">
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" onclick="location.replace('/')" name="btnradio" id="btnradio1" autocomplete="off" disabled>
+      <label class="btn btn-outline-primary" for="btnradio1">경기도</label>
+
+      <input type="radio" class="btn-check" onclick="location.replace('/gangwon');" name="btnradio" id="btnradio2" autocomplete="off" disabled>
+      <label class="btn btn-outline-primary" for="btnradio2">강원도</label>
+
+      <input type="radio" class="btn-check" onclick="location.replace('/chungbuk');" name="btnradio" id="btnradio3" autocomplete="off" disabled>
+      <label class="btn btn-outline-primary" for="btnradio3">충청북도</label>
+
+      <input type="radio" class="btn-check" onclick="location.replace('/jeonnam');" name="btnradio" id="btnradio4" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio4">전라남도</label>
+
+      <input type="radio" class="btn-check" onclick="location.replace('/gh');" name="btnradio" id="btnradio5" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="btnradio5">경희대</label>
+    </div>
+
+    <div class="container py-3">
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        {% for city in citys %}
+        <div class="container col-lg-3">
+          <img src={{city.image}} height="100">
+          <h2 class="fw-normal py-2">{{city.kor_name}}</h2>
+          <p class="text-muted">{{city.represent}}</p>
+          <p><a class="btn btn-primary" href="/{{city.eng_name}}">추천 받기 »</a></p>
+        </div><!-- /.col-lg-4 -->
+        {% endfor %}
+      </div><!-- /.row -->
+      </div>
+  </div>
+
+  </div>
+</main>
+{% endblock %}
