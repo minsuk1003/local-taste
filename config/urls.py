@@ -25,5 +25,3 @@ urlpatterns = [
     path('common/', include('common.urls')),
     path('', region_select_views.index, name='index'),  # '/' 에 해당되는 path
 ]
-
-handler404 = 'common.views.page_not_found'
