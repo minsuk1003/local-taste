@@ -31,7 +31,7 @@ class Rating(models.Model):
     restaurant_num = models.ForeignKey('Restaurant', models.DO_NOTHING, db_column='restaurant_num', blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'rating'
 
 
@@ -62,5 +62,5 @@ class Restaurant(models.Model):
     normal_word_image = models.CharField(max_length=3000, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'restaurant'
