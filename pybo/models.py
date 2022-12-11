@@ -58,8 +58,6 @@ class Restaurant(models.Model):
     local_count = models.PositiveIntegerField(blank=True, null=True)
     normal_count = models.PositiveIntegerField(blank=True, null=True)
     map_image = models.CharField(max_length=3000, blank=True, null=True)
-    local_word_image = models.CharField(max_length=3000, blank=True, null=True)
-    normal_word_image = models.CharField(max_length=3000, blank=True, null=True)
 
     class Meta:
         managed = False
