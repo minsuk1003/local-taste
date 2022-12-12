@@ -1,5 +1,5 @@
 from .base import *
 
-ALLOWED_HOSTS = ['local-taste.kr', '13.209.140.12']
+ALLOWED_HOSTS = ['*']
 STATIC_ROOT = BASE_DIR / 'static/'
 STATICFILES_DIRS = []
