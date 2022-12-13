@@ -2,13 +2,47 @@ from django.shortcuts import render
 from django.db import connection
 
 def index(request):
-    return render(request, 'region_select.html')
+    citys = [
+        {'eng_name': 'namyangju',
+         'kor_name': '남양주시',
+         'image': "https://www.nyj.go.kr/preview/result/402/20171113140904168_60155.files/BIN000D.JPG",
+         'represent': '장어, 먹골배, 시래기 비빔밥',
+         },
+        {'eng_name': 'hanam',
+         'kor_name': '하남시',
+         'image': "https://blog.kakaocdn.net/dn/L3qvK/btqw87mBi2S/Ks07Xmqq8I6xqJxZW99oN0/img.jpg",
+         'represent': '오리백숙, 닭내장탕, 소곱창',
+         },
+        {'eng_name': 'gwangju',
+         'kor_name': '광주시',
+         'image': "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ftupj5%2Fbtqw9NuNznT%2FLEcCsS1KicOykLDQmQ6aC0%2Fimg.jpg",
+         'represent': '소머리국밥, 산채정식, 붕어찜',
+         },
+    ]
+    context = {'citys': citys}
+    return render(request, 'region_select.html', context)
 
 def gangwon(request):
-    return render(request, 'region_select/gangwon.html')
+    citys = [
+        {'eng_name': 'wonju',
+         'kor_name': '원주시',
+         'image': "https://blog.kakaocdn.net/dn/djHElD/btqxf4wzGkH/2oe0OcS8qlju0h3FVO2T6k/img.jpg",
+         'represent': '추어탕, 뽕잎밥, 복숭아불고기',
+         },
+    ]
+    context = {'citys': citys}
+    return render(request, 'region_select/gangwon.html', context)
 
 def chungbuk(request):
-    return render(request, 'region_select/chungbuk.html')
+    citys = [
+        {'eng_name': 'jecheon',
+         'kor_name': '제천시',
+         'image': "https://www.jecheon.go.kr/site/www/download/new-brand.jpg",
+         'represent': '순대국밥, 장어, 홍어, 불고기',
+         },
+    ]
+    context = {'citys': citys}
+    return render(request, 'region_select/chungbuk.html', context)
 
 def jeonnam(request):
     citys = [

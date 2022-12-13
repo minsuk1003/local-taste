@@ -5,7 +5,7 @@ from .views import base_views, question_views, answer_views,\
 urlpatterns = [
     # region_select_views.py
     path('',
-         region_select_views.jeonnam, name='jeonnam'),
+         region_select_views.index, name='index'),
     path('gangwon/',
          region_select_views.gangwon, name='gangwon'),
     path('chungbuk/',

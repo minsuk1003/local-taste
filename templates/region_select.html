@@ -9,7 +9,7 @@
     </div>
   <div class="container text-center px-2 py-3" id="featured-3">
     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-      <input type="radio" class="btn-check" onclick="location.replace('/')" name="btnradio" id="btnradio1" autocomplete="off" checked disabled>
+      <input type="radio" class="btn-check" onclick="location.replace('/')" name="btnradio" id="btnradio1" autocomplete="off" checked>
       <label class="btn btn-outline-primary" for="btnradio1">경기도</label>
 
       <input type="radio" class="btn-check" onclick="location.replace('/gangwon');" name="btnradio" id="btnradio2" autocomplete="off" disabled>
@@ -29,21 +29,14 @@
     <div class="container py-3">
       <!-- Three columns of text below the carousel -->
       <div class="row">
+        {% for city in citys %}
         <div class="container col-lg-3">
-          <img src="http://www.nyj.or.kr/images/img0303_03_201911.jpg" width="200" height="100">
-          <h2 class="fw-normal py-2">남양주시</h2>
-          <p><a class="btn btn-primary" href="namyangju">추천 받기 »</a></p>
+          <img src={{city.image}} width="200" height="100">
+          <h2 class="fw-normal py-2">{{city.kor_name}}</h2>
+          <p class="text-muted">{{city.represent}}</p>
+          <p><a class="btn btn-primary" href="/{{city.eng_name}}">추천 받기 »</a></p>
         </div><!-- /.col-lg-4 -->
-        <div class="container col-lg-3">
-          <img src="https://blog.kakaocdn.net/dn/L3qvK/btqw87mBi2S/Ks07Xmqq8I6xqJxZW99oN0/img.jpg" width="200" height="100">
-          <h2 class="fw-normal py-2">하남시</h2>
-          <p><a class="btn btn-primary" href="hanam">추천 받기 »</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="container col-lg-3">
-          <img src="https://www.gjcity.go.kr/portal/img/sub01/img_slogan_view.png" width="200" height="100">
-          <h2 class="fw-normal py-2">광주시</h2>
-          <p><a class="btn btn-primary" href="gwangju">추천 받기 »</a></p>
-        </div><!-- /.col-lg-4 -->
+        {% endfor %}
       </div><!-- /.row -->
       </div>
   </div>

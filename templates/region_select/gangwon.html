@@ -9,10 +9,10 @@
     </div>
   <div class="container text-center px-2 py-3" id="featured-3">
     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-      <input type="radio" class="btn-check" onclick="location.replace('/')" name="btnradio" id="btnradio1" autocomplete="off" disabled>
+      <input type="radio" class="btn-check" onclick="location.replace('/')" name="btnradio" id="btnradio1" autocomplete="off">
       <label class="btn btn-outline-primary" for="btnradio1">경기도</label>
 
-      <input type="radio" class="btn-check" onclick="location.replace('/gangwon');" name="btnradio" id="btnradio2" autocomplete="off" checked disabled>
+      <input type="radio" class="btn-check" onclick="location.replace('/gangwon');" name="btnradio" id="btnradio2" autocomplete="off" checked>
       <label class="btn btn-outline-primary" for="btnradio2">강원도</label>
 
       <input type="radio" class="btn-check" onclick="location.replace('/chungbuk');" name="btnradio" id="btnradio3" autocomplete="off" disabled>
@@ -28,16 +28,14 @@
     <div class="container py-3">
       <!-- Three columns of text below the carousel -->
       <div class="row">
+        {% for city in citys %}
         <div class="container col-lg-3">
-          <img src="https://w.namu.la/s/505205abaa409760edd55ab1b894ca007c5af313642f10890695d0965f66cc0875f166b9a59fa48322c8e0cb9f8accb861c5f709e7a851a8b4eadaecbd35c2b750015a875a2cfef277bbf7240619bdd2e13d2e67254789138889f3fd284b4b11" width="200" height="100">
-          <h2 class="fw-normal py-2">원주시</h2>
-          <p><a class="btn btn-primary" href="/wonju">추천 받기 »</a></p>
+          <img src={{city.image}} width="200" height="100">
+          <h2 class="fw-normal py-2">{{city.kor_name}}</h2>
+          <p class="text-muted">{{city.represent}}</p>
+          <p><a class="btn btn-primary" href="/{{city.eng_name}}">추천 받기 »</a></p>
         </div><!-- /.col-lg-4 -->
-        <div class="container col-lg-3">
-          <img src="https://seafarmshow.com/wp-content/uploads/2020/12/gangneung-1.png" width="200" height="100">
-          <h2 class="fw-normal py-2">강릉시</h2>
-          <p><a class="btn btn-primary" href="/gangneung">추천 받기 »</a></p>
-        </div><!-- /.col-lg-4 -->
+        {% endfor %}
       </div><!-- /.row -->
       </div>
 
