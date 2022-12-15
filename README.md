@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-# local-taste
 =======
-# SW_Capstone
+# 소융캡스톤디자인
 ## LOCAL TASTE - 현지인 기반 음식점 추천서비스
 
 [프로젝트 소개]
@@ -33,4 +31,3 @@
 
 
 시연 동영상 : https://www.youtube.com/watch?v=oXljLrR6cCA
->>>>>>> f02f674 (12.05)
