@@ -57,7 +57,7 @@ def result(request, city):
     page = request.GET.get('page', '1')
     kw = request.GET.get('kw', '')
     if kw:
-        restaurants = Restaurant.objects.order_by('-review_count')
+        restaurants = Restaurant.objects.order_by('-local_rating')
         restaurants = restaurants.filter(
             (Q(restaurant_name__icontains=kw) | Q(address__icontains=kw)) &
             Q(city=city)
