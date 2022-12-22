@@ -10,7 +10,7 @@ def result(request, city):
                     'naju': '나주시', 'boseong': '보성군', 'jangseong': '장성군',
                     'damyang': '담양군', 'yeonggwang': '영광군', 'gyeonghee': '경희대'}
     type_eng_kor = {'korean': '한식', 'japanese': '일식', 'chinese': '중식',
-                    'western': '양식', 'snack': '간식/야식', 'asian' : '아시아',
+                    'western': '양식', 'snack': '간식/야식', 'asian': '아시아',
                     'cafe': '카페', 'bar': '술집', 'others': '기타'
                     }
 
