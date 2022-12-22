@@ -62,6 +62,7 @@
 
 
 3) 음식점 정보 화면
+
 ![image](https://user-images.githubusercontent.com/63490319/209069501-68620cd2-24f1-4b80-9374-aa6bb2c812f1.png)
 
 - 음식점에 대한 기타 정보 나열
